@@ -14,11 +14,11 @@
 set -e  # Exit on error
 
 # Configuration
-SOURCE_DOMAIN="sim2real_gadras"
-TARGET_DOMAIN="sim2real_experimental"
+SOURCE_DOMAIN="gadras"
+TARGET_DOMAIN="geant4"
 ARCHITECTURE="MLP"
-UDA_METHOD="DeepCORAL"
-EVAL_METRIC="accuracy"
+UDA_METHOD="DAN"
+EVAL_METRIC="ape"
 SEED=0
 N_TRIALS=3
 SEARCH_TIME=1  # minutes per trial for hyperparameter search
