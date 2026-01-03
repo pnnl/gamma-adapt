@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # GPU-enabled service
   gamma-adapt-gpu:
@@ -7,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        BASE_IMAGE: tensorflow/tensorflow:2.16.2-gpu
+        BASE_IMAGE: python:3.11-slim
     image: gamma-adapt:gpu
     container_name: gamma-adapt-gpu
     runtime: nvidia
@@ -30,13 +28,13 @@ services:
               count: all
               capabilities: [gpu]
 
-  # CPU-only service
+  # CPU-only service (compatible with both Intel and Apple Silicon)
   gamma-adapt-cpu:
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        BASE_IMAGE: tensorflow/tensorflow:2.16.2
+        BASE_IMAGE: python:3.11-slim
     image: gamma-adapt:cpu
     container_name: gamma-adapt-cpu
     environment:

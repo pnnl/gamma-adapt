@@ -1,7 +1,7 @@
 # Multi-stage Dockerfile for gamma-adapt
-# Supports both GPU and CPU modes
+# Supports both GPU and CPU modes, compatible with ARM64 (Apple Silicon) and AMD64 (Intel)
 
-ARG BASE_IMAGE=tensorflow/tensorflow:2.16.2-gpu
+ARG BASE_IMAGE=python:3.11-slim
 FROM ${BASE_IMAGE}
 
 # Set working directory
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements file
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install Python dependencies (TensorFlow will auto-detect architecture)
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project
