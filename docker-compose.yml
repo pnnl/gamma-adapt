@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # GPU-enabled service
+  gamma-adapt-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: tensorflow/tensorflow:2.16.2-gpu
+    image: gamma-adapt:gpu
+    container_name: gamma-adapt-gpu
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - DATA_DIR=/workspace/data
+      - OUT_DIR=/workspace/out
+    volumes:
+      - ./data:/workspace/data
+      - ./out:/workspace/out
+      - ./run:/workspace/run
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # CPU-only service
+  gamma-adapt-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: tensorflow/tensorflow:2.16.2
+    image: gamma-adapt:cpu
+    container_name: gamma-adapt-cpu
+    environment:
+      - DATA_DIR=/workspace/data
+      - OUT_DIR=/workspace/out
+    volumes:
+      - ./data:/workspace/data
+      - ./out:/workspace/out
+      - ./run:/workspace/run
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
