@@ -7,9 +7,12 @@ FROM ${BASE_IMAGE}
 # Set working directory
 WORKDIR /workspace
 
-# Install system dependencies
+# Install system dependencies including build tools for compiling Python packages
 RUN apt-get update && apt-get install -y \
     git \
+    gcc \
+    g++ \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements file
