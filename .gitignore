@@ -1,0 +1,55 @@
+# Python
+*.out
+.ipynb_checkpoints
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data files
+X_train.npy
+X_val.npy
+X_test.npy
+y_train.npy
+y_val.npy
+y_test.npy
+ss_train.h5
+ss_val.h5
+ss_test.h5
+*.h5
+*.npy
+
+# Output files
+*.json
+*.png
+*.gif
+*.csv
+out/
+data/
+
+# OS files
+.DS_Store
+.DS_store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+.dockerignore
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
