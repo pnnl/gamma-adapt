@@ -17,6 +17,7 @@ services:
       - ./data:/workspace/data
       - ./out:/workspace/out
       - ./run:/workspace/run
+      - ./examples:/workspace/examples
     working_dir: /workspace
     stdin_open: true
     tty: true
@@ -44,6 +45,7 @@ services:
       - ./data:/workspace/data
       - ./out:/workspace/out
       - ./run:/workspace/run
+      - ./examples:/workspace/examples
     working_dir: /workspace
     stdin_open: true
     tty: true

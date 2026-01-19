@@ -1,0 +1,5 @@
+# Force Unix line endings for shell scripts on all platforms
+*.sh text eol=lf
+
+# Keep these files with Unix line endings as well
+Dockerfile text eol=lf

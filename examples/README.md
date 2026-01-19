@@ -46,9 +46,6 @@ Or mount your own data directory using docker-compose.
 Once your data is ready, you can run the complete workflow:
 
 ```bash
-# Make script executable
-chmod +x examples/quick_start.sh
-
 # Run the workflow
 bash examples/quick_start.sh
 ```
