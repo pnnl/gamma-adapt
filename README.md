@@ -2,22 +2,25 @@
 
 ## Description
 
-This repository contains the implementation for the research paper "Sim-to-real supervised domain adaptation for radioisotope identification." The project leverages machine learning methods to perform radioisotope identification using gamma spectroscopy. Specifically, this research incorporates domain adaptation techniques to efficiently fuse synthetic data with experimental spectra, producing models which:
-- Are more accurate than models trained solely on synthetic data
-- Require less training data than models trained using only experimental data
-
-## Key Features
-
-- **Multiple Training Modes**: Baseline, Supervised Domain Adaptation (SDA), and Unsupervised Domain Adaptation (UDA)
-- **Multiple Architectures**: MLP, CNN, Transformer-based (TBNN), and variants
-- **Hyperparameter Optimization**: Built-in support for hyperparameter search using Optuna
-- **Flexible Domain Support**: Works with arbitrary source/target domain names (not limited to specific datasets)
-- **Intuitive CLI**: Clear, self-documenting command-line interface with named arguments
-- **Docker Support**: Easy deployment with both CPU and GPU options
+This repository contains the implementation for the research paper "Sim-to-real supervised domain adaptation for radioisotope identification." The project leverages machine learning methods to perform radioisotope identification using gamma spectroscopy. Specifically, this research incorporates domain adaptation techniques to efficiently fuse synthetic data with experimental spectra.
 
 ## Installation
 
-### Using Docker (Recommended)
+### Prerequisites
+- Python 3.9+
+- TensorFlow 2.16.2
+- PyRIID (see requirements.txt)
+
+### Steps
+```bash
+git clone <repository-url>
+cd gamma-adapt
+pip install -r requirements.txt
+```
+
+### Using Docker (Optional)
+
+For containerized deployment:
 
 #### Prerequisites
 - Docker and Docker Compose installed
@@ -25,37 +28,14 @@ This repository contains the implementation for the research paper "Sim-to-real 
 
 #### GPU Mode
 ```bash
-# Build and run with GPU support
-docker-compose up -d gamma-adapt-gpu
-
-# Enter the container
+docker compose up -d gamma-adapt-gpu
 docker exec -it gamma-adapt-gpu bash
 ```
 
 #### CPU Mode
 ```bash
-# Build and run with CPU only
-docker-compose up -d gamma-adapt-cpu
-
-# Enter the container
+docker compose up -d gamma-adapt-cpu
 docker exec -it gamma-adapt-cpu bash
-```
-
-### Manual Installation
-
-#### Prerequisites
-- Python 3.9+
-- TensorFlow 2.16.2
-- PyRIID (see requirements.txt)
-
-#### Steps
-```bash
-# Clone the repository
-git clone <repository-url>
-cd gamma-adapt
-
-# Install dependencies
-pip install -r requirements.txt
 ```
 
 ## Data Preparation
@@ -77,17 +57,10 @@ data/
 └── ...
 ```
 
-### Using Official Datasets
+### Using Example Datasets
 
-1. Download the official datasets from [DATASET_URL_PLACEHOLDER]
-2. Extract to the `data/` directory following the structure above
-
-### Using Custom Datasets
-
-See `data/README.md` for detailed information on:
-- Expected HDF5 file format
-- Data structure requirements
-- How to prepare your own datasets
+1. Data from the sim-to-sim adaptation (https://doi.org/10.1016/j.nima.2025.171159) are available at [DATASET_URL_PLACEHOLDER]
+2. Download and extract to the `data/` directory following the structure above
 
 ## Usage
 
@@ -146,7 +119,7 @@ python -m run.Baseline.train_models -s gadras -a MLP -r 0 -T 60
 
 **Parameters:**
 - `--target-domain` / `-t`: (Optional) Additional domain for evaluation. If specified, the model will be evaluated on both source and target test sets. Useful for measuring domain gap before attempting domain adaptation.
-- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy` (default), `ape`, `f1`, `cosine`. Crossentropy loss is always recorded in addition to the selected metric.
+- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy`, `f1`, `ape`, `cosine`.
 
 **Default Values:**
 - `--seed`: 0
@@ -186,7 +159,7 @@ python -m run.SDA.train_models \
 
 **Parameters:**
 - `--training-size` / `-z`: (Optional) Number of target domain samples to use. If not specified, uses the entire dataset.
-- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy` (default), `ape`, `f1`, `cosine`, `crossentropy`.
+- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy`, `f1`, `ape`, `cosine`, `crossentropy`.
 
 **Default Values:**
 - `--mode`: finetune
@@ -240,7 +213,7 @@ python -m run.UDA.train_models \
 ```
 
 **Parameters:**
-- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy` (default), `ape`, `f1`, `cosine`, `crossentropy`.
+- `--eval-metric` / `-e`: Evaluation metric to use. Options: `accuracy`, `f1`, `ape`, `cosine`, `crossentropy`.
 
 **Default Values:**
 - `--seed`: 0
@@ -281,11 +254,6 @@ out/
     ├── DANN/
     └── ...
 ```
-
-**Example:**
-- `out/Baseline/gadras/MLP/model_0.json` - Baseline MLP trained on GADRAS
-- `out/SDA/finetune/gadras_to_geant4/CNN/model_full_0.json` - GADRAS-pretrained CNN fine-tuned on Geant4 dataset
-- `out/UDA/DAN/sim_v1_to_exp_v1/MLP/model_0.json` - DAN model for sim_v1→exp_v1 transfer
 
 ## Environment Variables
 
