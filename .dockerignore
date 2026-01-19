@@ -1,0 +1,25 @@
+# Data and outputs - mounted at runtime via docker-compose volumes
+data/
+out/
+
+# Git
+.git/
+.gitattributes
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+
+# Environment
+.env
+.env.*
