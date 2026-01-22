@@ -7,8 +7,9 @@ This repository contains the implementation for the research paper "Sim-to-real 
 ## Installation
 
 ### Prerequisites
-- Python 3.9+
-- TensorFlow 2.16.2
+- Python
+- TensorFlow 2.16
+- Optuna
 - PyRIID (see requirements.txt)
 
 ### Steps
