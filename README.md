@@ -290,4 +290,12 @@ and Associated Equipment (2025) 171159 doi:https://doi.org/10.1016/j.nima.2025.1
 
 ## License
 
-[LICENSE_PLACEHOLDER - To be determined]
+This project is licensed under the BSD 2-Clause License. See the LICENSE file for details.
+
+Copyright Battelle Memorial Institute 2026
+
+## Disclaimer
+
+This material was prepared as an account of work sponsored by an agency of the United States Government. See the disclaimer.txt file for full details.
+
+This software is operated by Battelle Memorial Institute for the United States Department of Energy under Contract DE-AC05-76RL01830.
