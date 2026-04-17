@@ -60,7 +60,7 @@ data/
 
 ### Using Example Datasets
 
-1. Data from the sim-to-sim adaptation (https://doi.org/10.1016/j.nima.2025.171159) are available at [DATASET_URL_PLACEHOLDER]
+1. Data from the sim-to-sim adaptation (https://doi.org/10.1016/j.nima.2025.171159) are available at: https://doi.org/10.25584/3028745
 2. Download and extract to the `data/` directory following the structure above
 
 ## Usage
